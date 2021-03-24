@@ -28,7 +28,7 @@ main(int argc, char** argv) {
 		for (source = 1; source < p; source++) {
 			MPI_Probe(MPI_ANY_SOURCE, tag, MPI_COMM_WORLD, &status);
 			MPI_Get_count(&status, MPI_CHAR, &count);
-			a[source] = malloc(count * sizeof(char));
+			a[status.MPI_SOURCE] = malloc(count * sizeof(char));
 			MPI_Recv(message, 100, MPI_CHAR, status.MPI_SOURCE, tag, MPI_COMM_WORLD, &status);
 			for (i = 0; i < strlen(message) + 1; i++) {
 				a[source][i] = message[i];
