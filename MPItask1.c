@@ -31,7 +31,7 @@ main(int argc, char** argv) {
 			a[status.MPI_SOURCE] = malloc(count * sizeof(char));
 			MPI_Recv(message, 100, MPI_CHAR, status.MPI_SOURCE, tag, MPI_COMM_WORLD, &status);
 			for (i = 0; i < strlen(message) + 1; i++) {
-				a[source][i] = message[i];
+				a[status.MPI_SOURCE][i] = message[i];
 			}
 			printf("%s\n", message);
 		}
